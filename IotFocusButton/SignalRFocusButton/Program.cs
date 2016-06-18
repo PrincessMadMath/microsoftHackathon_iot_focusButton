@@ -1,6 +1,7 @@
 ﻿using SignalRNotifier;
 using System;
 using System.Windows.Forms;
+using System.IO;
 
 namespace IotFocusButton
 {
@@ -38,8 +39,9 @@ namespace IotFocusButton
                     Console.WriteLine("------------------------------------------------------------------------------");
                 }
 
-                Console.WriteLine("\n\nPress enter to exit\n");
-                Console.ReadLine();
+                while (true) { }
+                //Console.WriteLine("\n\nPress enter to exit\n");
+                //Console.ReadLine();
             }
             catch (Exception ex)
             {
@@ -111,7 +113,7 @@ namespace IotFocusButton
             return dashes;
         }
 
-        [STAThread]
+        
         private static void setPath()
         {
             /*OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -129,7 +131,9 @@ namespace IotFocusButton
             Console.Write("Enter file path: ");
             string path = Console.ReadLine();
 
-            scriptFolderPath = path;
+            scriptFolderPath = Path.GetFullPath(path);
+
+            Console.WriteLine(scriptFolderPath);
 
         }
     }
