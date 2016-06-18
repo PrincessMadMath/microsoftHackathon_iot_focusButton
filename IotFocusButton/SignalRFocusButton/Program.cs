@@ -1,5 +1,4 @@
-﻿using IotFocusButton.ScriptRunner;
-using SignalRNotifier;
+﻿using SignalRNotifier;
 using System;
 using System.Windows.Forms;
 
@@ -10,6 +9,7 @@ namespace IotFocusButton
         private static string scriptFolderPath; 
 
         private static int notificationCount = 1;
+        
         static void Main(string[] args)
         {
             try
@@ -83,9 +83,10 @@ namespace IotFocusButton
             //Button 1 was pressed, this opens the file dialog option to select the path
             if(data.ButtonNumberPressed.ToString() == "Button1")
             {
+
                 Console.WriteLine("Exclusive button 1 pressed, no 0 in sight !");
 
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                setPath();
 
             }
 
@@ -108,6 +109,28 @@ namespace IotFocusButton
                 dashes += "-";
             }
             return dashes;
+        }
+
+        [STAThread]
+        private static void setPath()
+        {
+            /*OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = "Select script folder";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                scriptFolderPath = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+            }
+
+
+            Console.WriteLine(scriptFolderPath);
+            */
+
+            Console.Write("Enter file path: ");
+            string path = Console.ReadLine();
+
+            scriptFolderPath = path;
+
         }
     }
 }
