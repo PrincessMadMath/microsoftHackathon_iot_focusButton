@@ -1,13 +1,16 @@
-﻿using IotFocusButton.ScriptRunner;
-using SignalRNotifier;
+﻿using SignalRNotifier;
 using System;
-
+using System.Windows.Forms;
+using System.IO;
 
 namespace IotFocusButton
 {
     class Program
     {
+        private static string scriptFolderPath; 
+
         private static int notificationCount = 1;
+        
         static void Main(string[] args)
         {
             try
@@ -36,8 +39,9 @@ namespace IotFocusButton
                     Console.WriteLine("------------------------------------------------------------------------------");
                 }
 
-                Console.WriteLine("\n\nPress enter to exit\n");
-                Console.ReadLine();
+                while (true) { }
+                //Console.WriteLine("\n\nPress enter to exit\n");
+                //Console.ReadLine();
             }
             catch (Exception ex)
             {
@@ -77,6 +81,22 @@ namespace IotFocusButton
             Console.WriteLine($"{FormatEndString(79 + number.Length)}\n");
             Console.ForegroundColor = ConsoleColor.White;
             notificationCount++;
+
+            //Button 1 was pressed, this opens the file dialog option to select the path
+            if(data.ButtonNumberPressed.ToString() == "Button1")
+            {
+
+                Console.WriteLine("Exclusive button 1 pressed, no 0 in sight !");
+
+                setPath();
+
+            }
+
+            //This runs the scripts if there is an available path. 
+            else
+            {
+
+            }
         }
         /// <summary>
         /// Helper method for printing correct number of bottom dashes based on length of number string.
@@ -91,6 +111,30 @@ namespace IotFocusButton
                 dashes += "-";
             }
             return dashes;
+        }
+
+        
+        private static void setPath()
+        {
+            /*OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = "Select script folder";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                scriptFolderPath = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+            }
+
+
+            Console.WriteLine(scriptFolderPath);
+            */
+
+            Console.Write("Enter file path: ");
+            string path = Console.ReadLine();
+
+            scriptFolderPath = Path.GetFullPath(path);
+
+            Console.WriteLine(scriptFolderPath);
+
         }
     }
 }
