@@ -1,11 +1,13 @@
 ﻿using SignalRNotifier;
 using System;
-
+using System.Windows.Forms;
 
 namespace IotFocusButton
 {
     class Program
     {
+        private static string scriptFolderPath; 
+
         private static int notificationCount = 1;
         static void Main(string[] args)
         {
@@ -76,6 +78,21 @@ namespace IotFocusButton
             Console.WriteLine($"{FormatEndString(79 + number.Length)}\n");
             Console.ForegroundColor = ConsoleColor.White;
             notificationCount++;
+
+            //Button 1 was pressed, this opens the file dialog option to select the path
+            if(data.ButtonNumberPressed.ToString() == "Button1")
+            {
+                Console.WriteLine("Exclusive button 1 pressed, no 0 in sight !");
+
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            }
+
+            //This runs the scripts if there is an available path. 
+            else
+            {
+
+            }
         }
         /// <summary>
         /// Helper method for printing correct number of bottom dashes based on length of number string.
