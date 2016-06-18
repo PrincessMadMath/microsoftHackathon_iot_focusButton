@@ -95,7 +95,14 @@ namespace IotFocusButton
             //This runs the scripts if there is an available path. 
             else
             {
-
+                if (!string.IsNullOrWhiteSpace(scriptFolderPath))
+                {
+                    var paths = Directory.GetFiles(scriptFolderPath);
+                    foreach (var path in paths)
+                    {
+                        ScriptRunnerManager.StartScriptRunner(path);
+                    }
+                }
             }
         }
         /// <summary>

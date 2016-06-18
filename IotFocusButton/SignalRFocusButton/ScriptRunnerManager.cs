@@ -11,7 +11,8 @@ namespace IotFocusButton
     public static class ScriptRunnerManager
     {
         public static Dictionary<string, IScriptRunner> ExtensionRunners = new Dictionary<string, IScriptRunner>() {
-            { "bat", new BatchFileRunner() }
+            { ".bat", new BatchFileRunner() },
+            { ".py", new PythonScriptRunner() }
         };
 
         /// <summary>
